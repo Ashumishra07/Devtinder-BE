@@ -3,42 +3,36 @@
 const express = require("express");
 app=express();
 
-// Create multiple http method get,post,put,delete
-app.get("/a",(req,res)=>{
-    res.send("Hello ANd Lets boom it");
-});
+app.use("/user",(req,res,next)=>{
+    console.log("In 1st Response!");
+    // res.send("Response1st!");
+    next();
+},
+(req,res,next)=>{
+    console.log("In 2 Response!");
+    // res.send("Response2!!;");
+    next();
 
-app.post("/hello",(req,res)=>{
-    res.send("Hello ANd Lets boom it only hello");
-});
+},
+(req,res,next)=>{
+    console.log("In 3 Response!");
+    // res.send("Response3!!;");
+    next();
 
-app.put("/xyz",(req,res)=>{
-    res.send("Hello ANd Lets boom it xyz");
-});
+},
+(req,res,next)=>{
+    console.log("In 4 Response!");
+    res.send("Response4!!;");
+    next();
 
-app.delete("/hello/2",(req,res)=>{
-    res.send("Hello ANd Lets boom it hello2");
-});
+},
 
-// play with rote and checks order and ordermatters in real 
-app.use("/new",(req,res)=>{
-    res.send("Welcome to server at 7777");
-    
-});
-app.use("/test",(req,res) =>{
 
-    res.send("HEllo welcome to server");
-});
-app.use("/",(req,res)=>{
-    res.send("Welcome to server at 7777 hey");
-    
-});
+);
 
-app.use("/hello/2",(req,res) => {
-    res.send("Namaste hi hello");
-});
+
+
 
 app.listen(7777,() =>{
     console.log("App is Listening at port number 7777");
 })
-
