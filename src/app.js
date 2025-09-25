@@ -2,33 +2,27 @@
 
 const express = require("express");
 app=express();
+const {authMiddleware, userMiddleware} =require("./middlewares/auth.middleware")
 
-app.use("/user",(req,res,next)=>{
-    console.log("In 1st Response!");
-    // res.send("Response1st!");
-    next();
-},
-(req,res,next)=>{
-    console.log("In 2 Response!");
-    // res.send("Response2!!;");
-    next();
+app.use("/admin",authMiddleware);
+// app.use("/user",userMiddleware);
 
-},
-(req,res,next)=>{
-    console.log("In 3 Response!");
-    // res.send("Response3!!;");
-    next();
+app.get("/admin/getAdminAllUser",(req,res)=>{
+    res.send("DAta is already sent");
+});
 
-},
-(req,res,next)=>{
-    console.log("In 4 Response!");
-    res.send("Response4!!;");
-    next();
+app.get("/admin/DeleteAllUser",(req,res)=>{
+    res.send("DAta is Deleted sent");
+});
 
-},
+app.get("/user/getAllUser",userMiddleware,(req,res)=>{
+    res.send("All useer sent");
+});
 
-
-);
+// Dont make middleware for user/Login
+app.get("/user/loginUser",(req,res)=>{
+    res.send("user logined");
+})
 
 
 

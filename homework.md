@@ -25,7 +25,13 @@ _Explore routing and use 0f ?,+,(),* in the rotes name   (not working in code )
 -Reaad Documentation of express    (done)
 
 EPISODE_5
--Multiple route handlerds -play with the code
--next()
--next function and errors along with res.send(If we wrote in first function there in second route handler function)
--app.use("/route",rH,[rh2,rh3],rh4,rh5)-multiple hanler and we keep them in array at anywhere for any route handler.
+-Multiple route handlerds -play with the code  (DONE)
+-next() (DONE)
+-next function and errors along with res.send(If we wrote in first function there in second route handler function) (DONE)
+-app.use("/route",rH,[rh2,rh3],rh4,rh5)-multiple hanler and we keep them in array at anywhere for any route handler. (DONE)
+-What is middleware?Why do we need it? (DONE)
+-How express Js basically handles requests behind the scenes.
+-Difference app.use and app.all
+-Write a dummy auth middlewware for admin. (DONE)
+-Write adummy auth middleware for all user routes,except /user/login   (DONE)
+-Error Handling using app.use("/",(err,req,res,next)={};)
