@@ -2,31 +2,41 @@
 
 const express = require("express");
 app=express();
-const {authMiddleware, userMiddleware} =require("./middlewares/auth.middleware")
+const connectDB =require("./config/database");
+const User = require("./models/user");
 
-app.use("/admin",authMiddleware);
-// app.use("/user",userMiddleware);
-
-app.get("/admin/getAdminAllUser",(req,res)=>{
-    res.send("DAta is already sent");
-});
-
-app.get("/admin/DeleteAllUser",(req,res)=>{
-    res.send("DAta is Deleted sent");
-});
-
-app.get("/user/getAllUser",userMiddleware,(req,res)=>{
-    res.send("All useer sent");
-});
-
-// Dont make middleware for user/Login
-app.get("/user/loginUser",(req,res)=>{
-    res.send("user logined");
+app.post("/signup",async(req,res) =>{
+    const user = new User({
+        firstName:"Ashu",
+        lastmane:"Mishra",
+        emamil:"Ashu05@gmail.com",
+        password:"Ashu@123",
+        gender:"Male",
+    });
+    try{
+        await user.save();
+        res.send("Ussssser created Successfully...");
+    }
+    catch(error){
+        res.status(400).send("USer is not created:"+error.message);
+    }
 })
 
-
-
-
-app.listen(7777,() =>{
+connectDB()
+  .then(() =>{
+    console.log("Database connection established ....");
+    app.listen(7777,() =>{
     console.log("App is Listening at port number 7777");
+});
+
 })
+.catch((err) =>{
+     console.error("Database cannot established...")
+})
+
+ 
+
+
+
+
+
