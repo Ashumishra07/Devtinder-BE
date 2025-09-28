@@ -35,3 +35,4 @@ EPISODE_5
 -Write a dummy auth middlewware for admin. (DONE)
 -Write adummy auth middleware for all user routes,except /user/login   (DONE)
 -Error Handling using app.use("/",(err,req,res,next)={};)
+
