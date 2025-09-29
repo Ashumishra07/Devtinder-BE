@@ -25,8 +25,46 @@ app.post("/signup",async(req,res) =>{
     catch(error){
         res.status(400).send("USer is not created:"+error.message);
     }
-})
+});
 
+// GEt user by email
+app.get("/user", async(req,res) => {
+    const user = req.body.email;
+    try{
+        const users = await User.findOne({email:user});
+        if(!users){
+            res.status(404).send("Email is not valid or user not exists");
+        }
+        else{
+            res.send("User get successfully by email");
+        }
+    }
+    catch(error){
+        console.error("Someting went wrong:"+err.message);
+
+    }
+    
+});
+
+// GET user -GET/feed find
+app.get("/feeds",async(req,res) => {
+     const user2 = req.body.email;
+     try{
+        const findusers = await User.find({email:user2});
+        console.log(findusers);
+        if(findusers.length === 0){
+            res.status(404).send("NOT GETTING USER IN MY FEED ....");
+        }
+        else{
+            // res.send("USER IS VISIBLE IN MY FEED");
+            res.send(findusers)
+        }
+     }
+     catch(error){
+        console.error("SOMETHING WENT WRONG :"+error.message);
+       
+     }
+})
 connectDB()
   .then(() =>{
     console.log("Database connection established ....");

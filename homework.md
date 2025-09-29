@@ -45,3 +45,13 @@ Episode6
 -Create a post /signup API to add data to database
 -Push some documents using api calls from postman
 -Error Handling using try,catch
+
+Episode7
+-JS object vs JSON(Difference)
+-Add the express.json middleware to your api
+-Make your signup api dynamic to receive data from the end user
+-User.findone with duplicate email ids, which object returned 
+-API -Get user by email
+-API-Feed _GET/feed -get all the users from the database
+-API -Get user by ID
+******READ DOCUMMENTATION MOONGOOSE .COM**************
