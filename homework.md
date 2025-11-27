@@ -55,3 +55,47 @@ Episode7
 -API-Feed _GET/feed -get all the users from the database
 -API -Get user by ID
 ******READ DOCUMMENTATION MOONGOOSE .COM**************
+-API -Update a user
+=Explpore the Moongoose Documentataion for model methods
+-WhAT are options in a Model.findbyidandupdate method,exploremmore about it
+-Api-Update the user with emailId
+
+Episode 8
+-Explore Schema Type Option from documentaton 
+-addd requirec,unique,lowercase,min,minlength,trim
+-Add default
+-Improve the Db schema -put all appropriate validatons on each field in schema
+-add timestamp to the userschema 
+-Add Api level validation on patch request and signup post api
+-Data Santizing -add Api validaton for each field
+-Install Validator
+-Explore Use validator library function and use function for password,email,photourl
+
+EPISODE 9:
+-Validate data in signup api
+-Install bcrypt package
+-Create Passwordhash using bcrypt.hash & save the user in  encrypted password in database.
+-create a login api.
+-compare  a passwords and valid emai and password is valid or not in login api.
+
+EPISODE-10
+-Install cookie-parser
+-just send a dummy cookie to user
+-create GET/profile API and check if you get the cookie back
+-INSTALL jsoonwebtoken
+-In login/api , after email and password validation ,create a JWT token and send it to user in cookies
+-read the cookies inside your profile API and find logged in user.
+-userAuth Middleware
+-Add the userAuth middleware in profile and sendconnectionrequest api
+-Set the expiry of Jwt token and cookies to 7 days
+- create Userschema methods to getJwt()
+-create Userschema metod to comparepassword(passwordinputbyuser).
+
+EPISODE-11
+-Explore tinder Apis
+_Create a list all api you can think of ini Dev tinder
+-Group multiple routes under respective routers
+-Read Documentation for express.Router
+-Create routes Folder for managing auth,profile,request routes
+-Create authRouter,profileRouter,requestRouter
+-Import these routers in app.js
