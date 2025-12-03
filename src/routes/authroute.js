@@ -64,4 +64,35 @@ authRouter.post('/login', async (req, res) => {
     }
 });
 
+// authRouter.post('/logout',async(req,res) =>{
+//     res.cookie("token",null,
+//         {expires:new Date(Date.now())});
+
+//     res.send("Logout Successfully!!!!");
+// });
+
+authRouter.post('/logout', async (req, res) => {
+    try {
+        // Clear the token cookie
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,       // Set true in production (HTTPS)
+            sameSite: "strict",
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Logged out successfully!"
+        });
+    } catch (error) {
+        console.error("Logout Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Logout failed, try again."
+        });
+    }
+});
+
+
+
 module.exports =authRouter;
