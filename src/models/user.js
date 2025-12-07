@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema({
     lastName:{type:String},
     emailId:{type:String},
     password:{type:String},
+    skills:{type:String,max:50},
+    branch:{type:String},
+    education:{type:String},
+    age:{type:String},
+    dob:{type:String},
     
 
 });

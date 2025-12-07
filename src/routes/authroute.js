@@ -74,7 +74,7 @@ authRouter.post('/login', async (req, res) => {
 authRouter.post('/logout', async (req, res) => {
     try {
         // Clear the token cookie
-        res.clearCookie("token", {
+        res.clearCookie("token",{
             httpOnly: true,
             secure: true,       // Set true in production (HTTPS)
             sameSite: "strict",
@@ -95,4 +95,4 @@ authRouter.post('/logout', async (req, res) => {
 
 
 
-module.exports =authRouter;
+module.exports = authRouter;

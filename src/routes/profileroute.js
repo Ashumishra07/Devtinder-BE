@@ -1,10 +1,12 @@
 
 const { userMiddleware } = require("../middlewares/auth.middleware");
-const express = require('express')
+const express = require('express');
+const { validateEditProfileData } = require("../utility/helper");
+const User = require("../models/user");
 const profileRouter =express.Router();
 
 
-profileRouter.get('/profile', userMiddleware
+profileRouter.get('/profile-view', userMiddleware
     ,async (req,res) => {
     try{
         console.log("?profile1")
@@ -29,5 +31,25 @@ profileRouter.get('/profile', userMiddleware
 
     }
 });
+
+profileRouter.patch('/profile-edit', userMiddleware, async(req,res) => {
+    try{
+       if(!validateEditProfileData){
+         throw new Error("INVALID EDIT INPUT REQUEST");
+       }
+       
+       const loggedInUser = req.user;
+       const editProfile= Object.keys(req.body).forEach((keys)=>loggedInUser[keys]=req.body[keys]);
+       const updatedProfile = await loggedInUser.save();
+       res.json({
+        message:`${loggedInUser.firstName},your profile updated successfully`,
+        data :{loggedInUser}
+    })
+    }
+    catch{
+        throw new Error("SOMETHING WENT WRONG!!!!");
+    }
+
+})
 
 module.exports = profileRouter;
