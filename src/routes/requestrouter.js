@@ -3,17 +3,15 @@ const express = require('express')
 const requestRouter = express.Router();
 
 
-requestRouter.post('/sendconnectionrequest', userMiddleware,async(req,res)=>{
+requestRouter.post('/request/send/:status/:toUserId', userMiddleware,async(req,res)=>{
      
     try{
-         const user =req.user;
-     if(!user){
-        return("you are not ready")
+         const fromUserId =req.user._id;
+         const toUserId = req.params.toUserId;
+         const status = req.params.status;
+
      }
-     else{
-        res.send(user.firstName + " sendconnection Request ")
-     }
-    }
+    
     catch(error){
         throw new error
     }
