@@ -50,6 +50,10 @@ profileRouter.patch('/profile-edit', userMiddleware, async(req,res) => {
         throw new Error("SOMETHING WENT WRONG!!!!");
     }
 
-})
+});
+
+// NOTE: Password change route is not implemented yet
+
+// profileRouter.patch('/profile/password-change', userMiddleware, async(req,res) => {});
 
 module.exports = profileRouter;
