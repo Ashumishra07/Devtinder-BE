@@ -48,6 +48,44 @@ userRouter.get('/user/connections', userMiddleware , async(req,res) =>{
     catch(err){
         throw new Error("Something went wrong!!!"+err.message);
     }
+});
+
+userRouter.get('/feed', userMiddleware , async(req,res) => {
+    try{
+        const loggedInUser = req.user;
+        const page = parseInt(req.query.page) || 1;
+        let limit = parseInt(req.query.limit) || 10;
+        limit = limit > 50 ? 50 : limit;
+        const skip = (page - 1) * limit;
+
+        const connections = await ConnectionRequest.find({
+            $or:[
+                {fromUserId:loggedInUser._id },
+                {toUserId:loggedInUser._id }
+            ]
+        }).select('fromUserId toUserId');
+
+        const hideConnection = new Set();
+
+        connections.forEach(connection =>{
+            hideConnection.add(connection.fromUserId.toString());
+            hideConnection.add(connection.toUserId.toString());
+        });
+
+        const feedUsers = await User.find({
+          $and: [
+            { _id: { $nin: Array.from(hideConnection) } },
+            { _id: { $ne: loggedInUser._id } }
+          ]
+        }).select(USER_PRIVATE_FIELDS)
+        .skip(skip).
+        limit(limit);
+
+        res.json({message:"Feed users",data:feedUsers});
+    }
+    catch(err){
+        throw new Error("Something went wrong!!!"+err.message);
+    }
 })
 
 module.exports = userRouter;
