@@ -2,6 +2,7 @@ const express = require('express');
 const userRouter = express.Router();
 const ConnectionRequest = require("../models/connectionrequest.model");
 const {userMiddleware} = require("../middlewares/auth.middleware");
+const User = require('../models/user.js');
 
 
 const USER_PRIVATE_FIELDS = "firstName  lastName  skills age"
@@ -13,8 +14,9 @@ userRouter.get('/user/received/requests', userMiddleware , async(req,res) =>{
 
         const receivedrequests = await ConnectionRequest.find({
             toUserId: loggedInUser._id,
-            status: 'Interested'
+            Status: 'Interested'
         }).populate('fromUserId', USER_PRIVATE_FIELDS);
+
        
         res.json({message:"Received requests",data:receivedrequests});
     }
@@ -30,8 +32,8 @@ userRouter.get('/user/connections', userMiddleware , async(req,res) =>{
 
         const connections = await ConnectionRequest.find({
             $or:[
-                {fromUserId:loggedInUser._id , status:'Accepted'},
-                {toUserId:loggedInUser._id , status:'Accepted'}
+                {fromUserId:loggedInUser._id , Status:'Accepted'},
+                {toUserId:loggedInUser._id , Status:'Accepted'}
             ]
         }).populate('fromUserId', USER_PRIVATE_FIELDS ).populate('toUserId', USER_PRIVATE_FIELDS);
 
@@ -41,6 +43,7 @@ userRouter.get('/user/connections', userMiddleware , async(req,res) =>{
             }
             return row.fromUserId;
         });
+        
 
         res.json({message:"Your connections",data:data});
 
