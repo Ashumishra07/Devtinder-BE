@@ -31,11 +31,11 @@ const User = require("../models/user");
 
 const userMiddleware= async(req,res,next)=>{
     // Read the Token From the req cookies
-    console.log("Error matlam import cookies");
+    // console.log("Error matlam import cookies");
     const {token} = req.cookies;
     // Validate the Token
     if(!token){
-        throw new Error("Invalid TOken!!!!!")
+        res.status(401).send("Please Login!!");
     }
     // Find the username
     const decodedHash =  await jwt.verify(token,"Ashutosh@2004mishra");

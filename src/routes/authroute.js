@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const express = require('express')
 const authRouter = express.Router();
-
-
+const getJWT = require("../models/user");
+const validatePassword = require("../models/user");
 
 
 authRouter.post("/signup",async(req,res) =>{
@@ -16,7 +16,7 @@ authRouter.post("/signup",async(req,res) =>{
         const validBody = validateSignupData(req);
         console.log("#log", validBody);
 
-        const { firstName, lastName, emailId, password } = req.body;
+        const { firstName, lastName, emailId, password,gender,about,age,photourl } = req.body;
 
         //    Encrypt password in db
         const hashPassword = await bcrypt.hash(password, 10);
@@ -50,9 +50,14 @@ authRouter.post('/login', async (req, res) => {
         if (validPassword) {
             // create a jwt token
             const token = await user.getJWT();
+            
             // Add the token to cookie snd send the response back to user
-            res.cookie("token",token)
-            res.send("Login Successful");
+            res.cookie("token",token,{
+                httpOnly: true,
+                // secure: true,       // Set true in production (HTTPS)
+                // sameSite: "strict",
+            })
+            res.send(user);
         }
         else if (!validPassword) {
             res.status(400).send("INVALID CREDENTIALS");

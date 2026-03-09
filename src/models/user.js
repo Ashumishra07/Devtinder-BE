@@ -8,11 +8,9 @@ const userSchema = new mongoose.Schema({
     emailId:{type:String},
     password:{type:String},
     photoUrl:{type:String},
-    skills:{type:String,max:50},
-    branch:{type:String},
-    education:{type:String},
-    age:{type:String},
-    dob:{type:String},
+    about:{type:String,max:50},
+    gender:{type:String},
+    age:{type:Number},
     
 });
 
