@@ -30,6 +30,11 @@ app.use('/',profileRouter);
 app.use('/',requestRouter);
 app.use('/',userRouter);
 
+app.use((req, res) => {
+  console.log("Route hit:", req.url);
+  res.status(404).send("Route not found in Express");
+});
+
 app.get("/", (req, res) => {
   res.send("API is working");
 });
