@@ -10,6 +10,7 @@ const requestRouter =require("./routes/requestrouter");
 const userRouter = require("./routes/userroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dbConnectMiddleware = require("./middlewares/dbConnect");
 const dotenv = require("dotenv");
 dotenv.config();  
 
@@ -24,32 +25,24 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(dbConnectMiddleware)
 
 app.use('/api',authRouter);
 app.use('/api',profileRouter);
 app.use('/api',requestRouter);
 app.use('/api',userRouter);
 
-app.use((req, res) => {
-  console.log("Route hit:", req.url);
-  res.status(404).send("Route not found in Express");
-});
+
 
 app.get("/", (req, res) => {
   res.send("API is working");
 });
 
-connectDB()
-  .then(() =>{
-    console.log("Database connection established ....");
-    
-    console.log("App is Listening at port number 7777");
-    console.log("Connected DB:", mongoose.connection.name)
+app.use((req, res) => {
+  console.log("Route hit:", req.url);
+  res.status(404).send("Route not found in Express");
+});
 
-})
-.catch((err) =>{
-     console.error("Database cannot established...")
-})
 
 module.exports = app;
 
