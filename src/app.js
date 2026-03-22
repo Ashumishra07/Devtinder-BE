@@ -10,9 +10,15 @@ const requestRouter =require("./routes/requestrouter");
 const userRouter = require("./routes/userroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();  
 
+const allowedOrigins = [
+    process.env.FRONTEND_URL_LOCAL,
+    process.env.FRONTEND_URL_PROD,
+];
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     credentials: true
 }));
 
@@ -29,19 +35,16 @@ app.use('/',userRouter);
 connectDB()
   .then(() =>{
     console.log("Database connection established ....");
-    app.listen(7777,() =>{
+    
     console.log("App is Listening at port number 7777");
-    console.log("Connected DB:", mongoose.connection.name);
-});
+    console.log("Connected DB:", mongoose.connection.name)
 
 })
 .catch((err) =>{
      console.error("Database cannot established...")
 })
 
- 
-
-
+module.exports = app;
 
 
 
