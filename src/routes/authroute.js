@@ -8,6 +8,7 @@ const getJWT = require("../models/user");
 const validatePassword = require("../models/user");
 
 
+
 // authRouter.post("/signup",async(req,res) =>{
 //     try {
 

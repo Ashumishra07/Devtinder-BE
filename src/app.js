@@ -23,7 +23,13 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: "10kb", strict: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use((err, req, res, next) => {
+  console.error("Body parse error:", err.message);
+  return res.status(400).send("Invalid JSON request");
+});
 app.use(cookieParser());
 app.use(dbConnectMiddleware)
 
