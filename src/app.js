@@ -30,7 +30,9 @@ app.use('/',profileRouter);
 app.use('/',requestRouter);
 app.use('/',userRouter);
 
-
+app.get("/", (req, res) => {
+  res.send("API is working");
+});
 
 connectDB()
   .then(() =>{
