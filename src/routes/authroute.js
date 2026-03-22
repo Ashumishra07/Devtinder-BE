@@ -8,33 +8,63 @@ const getJWT = require("../models/user");
 const validatePassword = require("../models/user");
 
 
-authRouter.post("/signup",async(req,res) =>{
-    try {
+// authRouter.post("/signup",async(req,res) =>{
+//     try {
 
-        // Validate request body
-        console.log("####333333444**##")
-        const validBody = validateSignupData(req);
-        console.log("#log", validBody);
+//         // Validate request body
+//         console.log("####333333444**##")
+//         const validBody = validateSignupData(req);
+//         console.log("#log", validBody);
 
-        const { firstName, lastName, emailId, password,gender,about,age,photourl } = req.body;
+//         const { firstName, lastName, emailId, password,gender,about,age,photourl } = req.body;
 
-        //    Encrypt password in db
-        const hashPassword = await bcrypt.hash(password, 10);
-        console.log("#logf2", hashPassword);
+//         //    Encrypt password in db
+//         const hashPassword = await bcrypt.hash(password, 10);
+//         console.log("#logf2", hashPassword);
 
 
-        console.log("#####*******##########");
-        const user = new User({
-            firstName, lastName, emailId, password: hashPassword,
-        });
-        console.log("user", JSON.stringify(user, null, 2));
+//         console.log("#####*******##########");
+//         const user = new User({
+//             firstName, lastName, emailId, password: hashPassword,
+//         });
+//         console.log("user", JSON.stringify(user, null, 2));
 
-        await user.save();
-        res.send("User created Successfully...");
-    }
-    catch (error) {
-        res.status(400).send("USer is not created:" + error.message);
-    }
+//         await user.save();
+//         res.send("User created Successfully...");
+//     }
+//     catch (error) {
+//         res.status(400).send("USer is not created:" + error.message);
+//     }
+// });
+
+authRouter.post("/signup", async (req, res) => {
+  try {
+    console.log("STEP 1: Request received");
+
+    const { firstName, lastName, emailId, password } = req.body;
+
+    console.log("STEP 2: Data parsed");
+
+    const hashPassword = await bcrypt.hash(password, 10);
+    console.log("STEP 3: Password hashed");
+
+    const user = new User({
+      firstName,
+      lastName,
+      emailId,
+      password: hashPassword,
+    });
+
+    console.log("STEP 4: User created");
+
+    await user.save();
+    console.log("STEP 5: User saved");
+
+    res.send("User created Successfully...");
+  } catch (error) {
+    console.error("ERROR:", error);
+    res.status(400).send("User not created: " + error.message);
+  }
 });
 
 authRouter.post('/login', async (req, res) => {
