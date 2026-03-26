@@ -10,47 +10,35 @@ const requestRouter =require("./routes/requestrouter");
 const userRouter = require("./routes/userroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const dbConnectMiddleware = require("./middlewares/dbConnect");
-const dotenv = require("dotenv");
-dotenv.config();  
 
-const allowedOrigins = [
-    process.env.FRONTEND_URL_LOCAL,
-    process.env.FRONTEND_URL_PROD,
-];
 app.use(cors({
-    origin: allowedOrigins,
+    origin: 'http://localhost:5173',
     credentials: true
 }));
 
-// app.use(express.json());
-app.use(express.json({ limit: "10kb", strict: true }));
-app.use(express.urlencoded({ extended: true }));
-app.use((err, req, res, next) => {
-  console.error("Body parse error:", err.message);
-  return res.status(400).send("Invalid JSON request");
-});
+app.use(express.json());
 app.use(cookieParser());
-app.use(dbConnectMiddleware)
 
-app.use('/api',authRouter);
-app.use('/api',profileRouter);
-app.use('/api',requestRouter);
-app.use('/api',userRouter);
-
+app.use('/',authRouter);
+app.use('/',profileRouter);
+app.use('/',requestRouter);
+app.use('/',userRouter);
 
 
-app.get("/", (req, res) => {
-  res.send("API is working");
+
+connectDB()
+  .then(() =>{
+    console.log("Database connection established ....");
+    app.listen(7777,() =>{
+    console.log("App is Listening at port number 7777");
+    console.log("Connected DB:", mongoose.connection.name);
 });
 
-app.use((req, res) => {
-  console.log("Route hit:", req.url);
-  res.status(404).send("Route not found in Express");
-});
+})
+.catch((err) =>{
+     console.error("Database cannot established...")
+})
 
-
-module.exports = app;
 
 
 
