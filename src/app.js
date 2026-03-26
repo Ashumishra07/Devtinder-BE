@@ -32,7 +32,9 @@ app.use('/',profileRouter);
 app.use('/',requestRouter);
 app.use('/',userRouter);
 
-
+app.use('/api', (req, res) => {
+    res.send("API is working fine...");
+});
 
 connectDB()
   .then(() =>{
