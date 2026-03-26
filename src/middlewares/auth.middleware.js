@@ -27,7 +27,7 @@
 // };
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
 
 
@@ -40,7 +40,7 @@ const userMiddleware= async(req,res,next)=>{
         res.status(401).send("Please Login!!");
     }
     // Find the username
-    const decodedHash =  await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const decodedHash =  await jwt.verify(token,process.env.JWT_SECRET);
     const {_id} = decodedHash;
     const user =await User.findById(_id);
     console.log("Reaxch",user)
