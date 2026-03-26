@@ -16,10 +16,10 @@ const mongoose = require("mongoose");
 //     credentials: true
 // }));
 app.use(cors({
-  origin: [
+  origin:[
     "http://localhost:5173", // Vite dev
     "http://localhost:3000", // React dev
-    "https://devtinder-fe-gamma.vercel.app/" // Production
+    "https://devtinder-fe-gamma.vercel.app" // Production
   ],
   credentials: true
 }));
