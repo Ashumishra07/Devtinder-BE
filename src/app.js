@@ -11,9 +11,17 @@ const userRouter = require("./routes/userroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//     credentials: true
+// }));
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
+  origin: [
+    "http://localhost:5173", // Vite dev
+    "http://localhost:3000", // React dev
+    "https://devtinder-fe-gamma.vercel.app/" // Production
+  ],
+  credentials: true
 }));
 
 app.use(express.json());
