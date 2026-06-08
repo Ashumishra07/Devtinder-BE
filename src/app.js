@@ -19,6 +19,7 @@ app.use(cors({
   origin:[
     "http://localhost:5173", // Vite dev
     "http://localhost:3000", // React dev
+    "api",
     "https://devtinder-fe-gamma.vercel.app" // Production
   ],
   credentials: true
