@@ -58,8 +58,10 @@ const userMiddleware = async (req, res, next) => {
 
     } catch (err) {
         return res.status(401).send("Invalid Token");
+        console.error("Error in userMiddleware:", err);
     }
 };
+
 // const userMiddleware= async(req,res,next)=>{
 //     // Read the Token From the req cookies
 //     // console.log("Error matlam import cookies");
