@@ -60,7 +60,7 @@ Day 7
 -WhAT are options in a Model.findbyidandupdate method,exploremmore about it
 -Api-Update the user with emailId
 
-Day 8
+Episode 8
 -Explore Schema Type Option from documentaton 
 -addd requirec,unique,lowercase,min,minlength,trim
 -Add default
@@ -71,14 +71,14 @@ Day 8
 -Install Validator
 -Explore Use validator library function and use function for password,email,photourl
 
-Day 9:
+EPISODE 9:
 -Validate data in signup api
 -Install bcrypt package
 -Create Passwordhash using bcrypt.hash & save the user in  encrypted password in database.
 -create a login api.
 -compare  a passwords and valid emai and password is valid or not in login api.
 
-Day-10
+EPISODE-10
 -Install cookie-parser
 -just send a dummy cookie to user
 -create GET/profile API and check if you get the cookie back
@@ -89,4 +89,17 @@ Day-10
 -Add the userAuth middleware in profile and sendconnectionrequest api
 -Set the expiry of Jwt token and cookies to 7 days
 - create Userschema methods to getJwt()
--create Userschema metod to comparepassword(passwordinputbyuser)
+-create Userschema metod to comparepassword(passwordinputbyuser).
+
+EPISODE-11
+-Explore tinder Apis
+_Create a list all api you can think of ini Dev tinder
+-Group multiple routes under respective routers
+-Read Documentation for express.Router
+-Create routes Folder for managing auth,profile,request routes
+-Create authRouter,profileRouter,requestRouter
+-Import these routers in app.js
+-Create Post /logOut Api
+-create Patch /profile/edit
+-Create Patch /profile/password Api => forgot password Api
+-Make you validate all data in every, Post, Patch Apis
