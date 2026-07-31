@@ -11,7 +11,7 @@
 -Difference between caret and tilde (^,~)in dependcies version .  (DONE)
 >3
 
-EPISODE:4
+Day:4
 _Intialize git   (DONE)
 -.gitignore       (DONE)
 -Create a remote repo on github      (DONE)
@@ -24,7 +24,7 @@ _Explore routing and use 0f ?,+,(),* in the rotes name   (not working in code )
 -Use of regex in routes /a/ ,/.*fly$/              (not working in code http method)
 -Reaad Documentation of express    (done)
 
-EPISODE_5
+Day 5
 -Multiple route handlerds -play with the code  (DONE)
 -next() (DONE)
 -next function and errors along with res.send(If we wrote in first function there in second route handler function) (DONE)
@@ -36,7 +36,7 @@ EPISODE_5
 -Write adummy auth middleware for all user routes,except /user/login   (DONE)
 -Error Handling using app.use("/",(err,req,res,next)={};)
 
-Episode6
+Day 6
 -Create a free cluster on mOngodb official website (Mongodb Atlas)
 -Install mongoose library
 -Connect your application to the Database-url/devtinder
@@ -46,7 +46,7 @@ Episode6
 -Push some documents using api calls from postman
 -Error Handling using try,catch
 
-Episode7
+Day 7
 -JS object vs JSON(Difference)
 -Add the express.json middleware to your api
 -Make your signup api dynamic to receive data from the end user
@@ -55,3 +55,38 @@ Episode7
 -API-Feed _GET/feed -get all the users from the database
 -API -Get user by ID
 ******READ DOCUMMENTATION MOONGOOSE .COM**************
+-API -Update a user
+=Explpore the Moongoose Documentataion for model methods
+-WhAT are options in a Model.findbyidandupdate method,exploremmore about it
+-Api-Update the user with emailId
+
+Day 8
+-Explore Schema Type Option from documentaton 
+-addd requirec,unique,lowercase,min,minlength,trim
+-Add default
+-Improve the Db schema -put all appropriate validatons on each field in schema
+-add timestamp to the userschema 
+-Add Api level validation on patch request and signup post api
+-Data Santizing -add Api validaton for each field
+-Install Validator
+-Explore Use validator library function and use function for password,email,photourl
+
+Day 9:
+-Validate data in signup api
+-Install bcrypt package
+-Create Passwordhash using bcrypt.hash & save the user in  encrypted password in database.
+-create a login api.
+-compare  a passwords and valid emai and password is valid or not in login api.
+
+Day-10
+-Install cookie-parser
+-just send a dummy cookie to user
+-create GET/profile API and check if you get the cookie back
+-INSTALL jsoonwebtoken
+-In login/api , after email and password validation ,create a JWT token and send it to user in cookies
+-read the cookies inside your profile API and find logged in user.
+-userAuth Middleware
+-Add the userAuth middleware in profile and sendconnectionrequest api
+-Set the expiry of Jwt token and cookies to 7 days
+- create Userschema methods to getJwt()
+-create Userschema metod to comparepassword(passwordinputbyuser)
