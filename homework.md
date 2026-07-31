@@ -11,7 +11,7 @@
 -Difference between caret and tilde (^,~)in dependcies version .  (DONE)
 >3
 
-EPISODE:4
+Day:4
 _Intialize git   (DONE)
 -.gitignore       (DONE)
 -Create a remote repo on github      (DONE)
@@ -24,7 +24,7 @@ _Explore routing and use 0f ?,+,(),* in the rotes name   (not working in code )
 -Use of regex in routes /a/ ,/.*fly$/              (not working in code http method)
 -Reaad Documentation of express    (done)
 
-EPISODE_5
+Day 5
 -Multiple route handlerds -play with the code  (DONE)
 -next() (DONE)
 -next function and errors along with res.send(If we wrote in first function there in second route handler function) (DONE)
@@ -36,7 +36,7 @@ EPISODE_5
 -Write adummy auth middleware for all user routes,except /user/login   (DONE)
 -Error Handling using app.use("/",(err,req,res,next)={};)
 
-Episode6
+Day 6
 -Create a free cluster on mOngodb official website (Mongodb Atlas)
 -Install mongoose library
 -Connect your application to the Database-url/devtinder
@@ -46,7 +46,7 @@ Episode6
 -Push some documents using api calls from postman
 -Error Handling using try,catch
 
-Episode7
+Day 7
 -JS object vs JSON(Difference)
 -Add the express.json middleware to your api
 -Make your signup api dynamic to receive data from the end user
