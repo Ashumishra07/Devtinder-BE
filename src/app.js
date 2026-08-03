@@ -8,8 +8,10 @@ const authRouter = require("./routes/authroute");
 const profileRouter = require("./routes/profileroute");
 const requestRouter =require("./routes/requestrouter");
 const userRouter = require("./routes/userroute");
+const paymentRouter = require("./routes/paymentroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
 
 // app.use(cors({
 //     origin: 'http://localhost:5173',
@@ -31,6 +33,7 @@ app.use('/',authRouter);
 app.use('/',profileRouter);
 app.use('/',requestRouter);
 app.use('/',userRouter);
+app.use('/',paymentRouter);
 
 app.use('/api', (req, res) => {
     res.send("API is working fine...");
