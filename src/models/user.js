@@ -1,37 +1,36 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 const JWT = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
-    firstName:{type:String , mim:4 ,max:50 ,required :true},
-    lastName:{type:String},
-    emailId:{type:String},
-    password:{type:String},
-    photoUrl:{type:String},
-    about:{type:String,max:50},
-    gender:{type:String},
-    age:{type:Number},
-    
+  firstName: { type: String, mim: 4, max: 50, required: true },
+  lastName: { type: String },
+  emailId: { type: String },
+  password: { type: String },
+  photoUrl: { type: String },
+  about: { type: String, max: 50 },
+  gender: { type: String },
+  age: { type: Number },
+  isPremium: { type: Boolean, default: false },
+  membershipType: {
+    type: String,
+  },
 });
 
-    
-userSchema.methods.getJWT = async function(){
-    const user =this;
-    const token = await JWT.sign({_id: user._id},"Ashutosh@2004mishra")
+userSchema.methods.getJWT = async function () {
+  const user = this;
+  const token = await JWT.sign({ _id: user._id }, "Ashutosh@2004mishra");
 
-    return token;
-
+  return token;
 };
 
-userSchema.methods.validatePassword = async function(passwordInputByUser){
-    const user =this;
-    const passwordHash = user.password
+userSchema.methods.validatePassword = async function (passwordInputByUser) {
+  const user = this;
+  const passwordHash = user.password;
 
-    const validPassword = await bcrypt.compare(passwordInputByUser, passwordHash);
-    return validPassword
+  const validPassword = await bcrypt.compare(passwordInputByUser, passwordHash);
+  return validPassword;
+};
 
-}
-
-
-const User =mongoose.model("User",userSchema);
-module.exports =User;
+const User = mongoose.model("User", userSchema);
+module.exports = User;
