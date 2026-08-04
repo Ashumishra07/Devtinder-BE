@@ -85,4 +85,19 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
   }
 });
 
+paymentRouter.get('/premium/verify', userMiddleware,async (req,res) =>{
+        try{
+            const user = req.user.toJSON();
+            if(user.isPremium){
+                return res.json(...user);
+            } else {
+                return res.json(...user);
+            }
+        }
+        catch(err){
+            console.error('Error verifying premium status:', err);
+            res.status(500).json({ error: 'Failed to verify premium status' });
+        }
+})
+
 module.exports = paymentRouter;
