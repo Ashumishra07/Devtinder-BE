@@ -6,6 +6,9 @@ const User = require('../models/user');
 const dotenv = require('dotenv');
 dotenv.config();
 const { membershipAmount } = require('../utility/constant');
+const {
+  validateWebhookSignature,
+} = require("razorpay/dist/utils/razorpay-utils");
 
 const paymentRouter = express.Router();
 
@@ -89,9 +92,9 @@ paymentRouter.get('/premium/verify', userMiddleware,async (req,res) =>{
         try{
             const user = req.user.toJSON();
             if(user.isPremium){
-                return res.json(...user);
+                return res.json({isPremium:true});
             } else {
-                return res.json(...user);
+                return res.json({isPremium:false});
             }
         }
         catch(err){
