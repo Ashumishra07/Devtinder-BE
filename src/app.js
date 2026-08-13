@@ -11,7 +11,10 @@ const userRouter = require("./routes/userroute");
 const paymentRouter = require("./routes/paymentroute");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
+// Creating a server without using express , we will use http module of nodejs
+const http = require("http");
+const initializeSocket = require("./utility/socket");
+const { chatRouter } = require("./routes/chatroute");
 
 // app.use(cors({
 //     origin: 'http://localhost:5173',
@@ -34,15 +37,21 @@ app.use('/',profileRouter);
 app.use('/',requestRouter);
 app.use('/',userRouter);
 app.use('/',paymentRouter);
+app.use('/',chatRouter);
 
 app.use('/api', (req, res) => {
     res.send("API is working fine...");
 });
 
+const server = http.createServer(app);
+
+initializeSocket(server);
+
+
 connectDB()
   .then(() =>{
     console.log("Database connection established ....");
-    app.listen(7777,() =>{
+    server.listen(7777,() =>{
     console.log("App is Listening at port number 7777");
     console.log("Connected DB:", mongoose.connection.name);
 });

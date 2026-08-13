@@ -103,3 +103,6 @@ _Create a list all api you can think of ini Dev tinder
 -create Patch /profile/edit
 -Create Patch /profile/password Api => forgot password Api
 -Make you validate all data in every, Post, Patch Apis
+
+
+#Chat Applications(Websocket,Socket.io)
