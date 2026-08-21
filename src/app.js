@@ -15,7 +15,8 @@ const mongoose = require("mongoose");
 const http = require("http");
 const initializeSocket = require("./utility/socket");
 const { chatRouter } = require("./routes/chatroute");
-
+require("dotenv").config();
+require("./utility/cronScheduler");
 // app.use(cors({
 //     origin: 'http://localhost:5173',
 //     credentials: true

@@ -5,7 +5,7 @@ const {userMiddleware} = require("../middlewares/auth.middleware");
 const User = require('../models/user.js');
 
 
-const USER_PRIVATE_FIELDS = "firstName  lastName  skills age"
+const USER_PRIVATE_FIELDS = "firstName  lastName  about  gender age photoUrl"
 
 userRouter.get('/user/received/requests', userMiddleware , async(req,res) =>{
 
