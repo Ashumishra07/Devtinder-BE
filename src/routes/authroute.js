@@ -10,27 +10,32 @@ const validatePassword = require("../models/user");
 
 authRouter.post("/signup",async(req,res) =>{
     try {
+      // Validate request body
+      const validBody = validateSignupData(req);
+      console.log("#log", validBody);
 
-        // Validate request body
-        console.log("####333333444**##")
-        const validBody = validateSignupData(req);
-        console.log("#log", validBody);
+      const { firstName, lastName, emailId, password } = req.body;
 
-        const { firstName, lastName, emailId, password,gender,about,age,photourl } = req.body;
+      //    Encrypt password in db
+      const hashPassword = await bcrypt.hash(password, 10);
+      console.log("#logf2", hashPassword);
 
-        //    Encrypt password in db
-        const hashPassword = await bcrypt.hash(password, 10);
-        console.log("#logf2", hashPassword);
+      console.log("#####*******##########");
+      const user = new User({
+        firstName,
+        lastName,
+        emailId,
+        password: hashPassword,
+      });
+      console.log("user", JSON.stringify(user, null, 2));
 
+      const savedUser = await user.save();
+      const token = await savedUser.getJWT();
 
-        console.log("#####*******##########");
-        const user = new User({
-            firstName, lastName, emailId, password: hashPassword,
-        });
-        console.log("user", JSON.stringify(user, null, 2));
-
-        await user.save();
-        res.send("User created Successfully...");
+      res.cookie("token", token, {
+        expires: new Date(Date.now() + 8 * 3600000),
+      });
+      res.json({ message: "User Added successfully!", data: savedUser });
     }
     catch (error) {
         res.status(400).send("USer is not created:" + error.message);
